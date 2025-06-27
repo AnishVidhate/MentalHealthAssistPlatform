@@ -34,7 +34,7 @@ namespace PaymentApp.Controllers
                     return BadRequest(new { message = "Invalid request data. Please provide valid UserId, Amount, and Currency." });
                 }
 
-                // ✅ Create Razorpay Order
+                //  Create Razorpay Order
                 RazorpayClient client = new RazorpayClient(_key, _secret);
                 Dictionary<string, object> options = new Dictionary<string, object>
                 {
@@ -64,25 +64,25 @@ namespace PaymentApp.Controllers
 
             try
             {
-                // ✅ Check if UserId exists in the Users table to avoid foreign key errors
+                //  Check if UserId exists in the Users table to avoid foreign key errors
                 var userExists = await _context.Users.AnyAsync(u => u.Id == payment.UserId);
                 if (!userExists)
                 {
                     return BadRequest(new { message = "Invalid UserId. User does not exist." });
                 }
 
-                // ✅ Check if a payment with the same ID already exists (only if Id is manually set)
+                //  Check if a payment with the same ID already exists (only if Id is manually set)
                 var existingPayment = await _context.Payments.FindAsync(payment.Id);
                 if (existingPayment != null)
                 {
                     return Conflict(new { message = "Payment ID already exists." });
                 }
 
-                // ✅ Save the payment first
+                //  Save the payment first
                 _context.Payments.Add(payment);
                 await _context.SaveChangesAsync();
 
-                // ✅ Check if the user already exists in the Subscription table
+                //  Check if the user already exists in the Subscription table
                 var existingSubscription = await _context.Subscriptions.FirstOrDefaultAsync(s => s.UserId == payment.UserId);
 
                 if (existingSubscription == null)

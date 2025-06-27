@@ -28,7 +28,7 @@ namespace mental_health_assist_platform.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+//                                              #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Server=(LocalDB)\\MSSQLLocalDB;Database=mental-health-assist-platform;Integrated Security=True;");
             }
         }
@@ -165,6 +165,7 @@ namespace mental_health_assist_platform.Models
 
             modelBuilder.Entity<Therapist>(entity =>
             {
+                
                 entity.HasIndex(e => e.Email, "UQ__Therapis__AB6E6164D25F130A")
                     .IsUnique();
 

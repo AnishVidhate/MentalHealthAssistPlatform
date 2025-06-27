@@ -15,7 +15,7 @@ public class SubscriptionControllerCheck : ControllerBase
         _context = context;
     }
 
-    // ✅ Get subscription status for a specific user (NO SESSION)
+    //  Get subscription status for a specific user (NO SESSION)
     [HttpGet("check/{userId}")]
     public async Task<ActionResult<bool>> GetSubscriptionStatus(int userId)
     {
@@ -38,7 +38,7 @@ public class SubscriptionControllerCheck : ControllerBase
 
 
 
-    // ✅ Create a new subscription (For initial sign-up) - No session-based authentication
+    //  Create a new subscription (For initial sign-up) - No session-based authentication
     [HttpPost("create/{userId}")]
     public async Task<ActionResult> CreateSubscription(int userId)
     {
@@ -59,7 +59,7 @@ public class SubscriptionControllerCheck : ControllerBase
         return Ok("Subscription created successfully.");
     }
 
-    // ✅ Upgrade Subscription (For Razorpay Payment Success) - No session-based authentication
+    //  Upgrade Subscription (For Razorpay Payment Success) - No session-based authentication
     [HttpPatch("upgrade/{userId}")]
     public async Task<IActionResult> UpgradeSubscription(int userId)
     {
@@ -74,7 +74,7 @@ public class SubscriptionControllerCheck : ControllerBase
         return Ok("Subscription upgraded successfully.");
     }
 
-    // ✅ Downgrade Subscription (For cancellation) - No session-based authentication
+    //  Downgrade Subscription (For cancellation) - No session-based authentication
     [HttpPatch("downgrade/{userId}")]
     public async Task<IActionResult> DowngradeSubscription(int userId)
     {

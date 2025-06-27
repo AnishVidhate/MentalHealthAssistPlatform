@@ -18,7 +18,7 @@ namespace MentalHealthAPI.Controllers
             _context = context;
         }
 
-        // ✅ Get all users whose role is not 'admin'
+        //  Get all users whose role is not 'admin'
         [HttpGet("users")]
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
@@ -37,7 +37,7 @@ namespace MentalHealthAPI.Controllers
             return Ok(therapists);
         }
 
-        // ✅ Get user by ID (only for non-admin users)
+        //  Get user by ID (only for non-admin users)
         [HttpGet("users/{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -49,7 +49,7 @@ namespace MentalHealthAPI.Controllers
             return Ok(user);
         }
 
-        // ✅ Get therapist by ID
+        //  Get therapist by ID
         [HttpGet("therapists/{id}")]
         public async Task<ActionResult<Therapist>> GetTherapist(int id)
         {
@@ -61,7 +61,7 @@ namespace MentalHealthAPI.Controllers
             return Ok(therapist);
         }
 
-        // ✅ Delete a user (excluding admins)
+        //  Delete a user (excluding admins)
         [HttpDelete("users/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
@@ -76,7 +76,7 @@ namespace MentalHealthAPI.Controllers
             return Ok(new { message = "User deleted successfully." });
         }
 
-        // ✅ Delete a therapist
+        //  Delete a therapist
         [HttpDelete("therapists/{id}")]
         public async Task<IActionResult> DeleteTherapist(int id)
         {

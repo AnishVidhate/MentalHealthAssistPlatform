@@ -19,7 +19,7 @@ namespace mental_health_assist_platform.Controllers
             _context = context;
         }
 
-        // ✅ GET: api/Therapist (Get all therapists)
+        //  GET: api/Therapist (Get all therapists)
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Therapist>>> GetTherapists()
         {
@@ -50,7 +50,7 @@ namespace mental_health_assist_platform.Controllers
         }
 
 
-        // ✅ GET: api/Therapist/{id} (Get therapist by ID)
+        //  GET: api/Therapist/{id} (Get therapist by ID)
         [HttpGet("{id}")]
         public async Task<ActionResult<Therapist>> GetTherapist(int id)
         {
@@ -62,7 +62,7 @@ namespace mental_health_assist_platform.Controllers
             return therapist;
         }
 
-        // ✅ PUT: api/Therapist/{id} (Update therapist profile)
+        //  PUT: api/Therapist/{id} (Update therapist profile)
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTherapist(int id, Therapist updatedTherapist)
         {
@@ -95,7 +95,7 @@ namespace mental_health_assist_platform.Controllers
             }
         }
 
-        // ✅ POST: api/Therapist (Register a new therapist)
+        //  POST: api/Therapist (Register a new therapist)
         [HttpPost]
         public async Task<ActionResult<Therapist>> CreateTherapist(Therapist therapist)
         {
@@ -112,7 +112,7 @@ namespace mental_health_assist_platform.Controllers
             return CreatedAtAction(nameof(GetTherapist), new { id = therapist.Id }, therapist);
         }
 
-        // ✅ DELETE: api/Therapist/{id} (Delete therapist)
+        //  DELETE: api/Therapist/{id} (Delete therapist)
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTherapist(int id)
         {

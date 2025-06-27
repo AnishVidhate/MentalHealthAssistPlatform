@@ -14,7 +14,8 @@ namespace mental_health_assist_platform.Models
             Subscriptions = new HashSet<Subscription>();*/
         }
 
-        public int Id { get; set; }
+        public int Id { get; set; }     
+
         public string Name { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;

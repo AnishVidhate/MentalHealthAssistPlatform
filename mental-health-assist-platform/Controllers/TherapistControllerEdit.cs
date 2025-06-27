@@ -10,14 +10,14 @@ namespace mental_health_assist_platform.Controllers
         private readonly MentalHealthDbContext _context;
         public TherapistControllerEdit(MentalHealthDbContext context) => _context = context;
 
-        // ✅ Get all therapists
+        //  Get all therapists
         [HttpGet]
         public ActionResult<IEnumerable<Therapist>> GetAllTherapists()
         {
             return Ok(_context.Therapists.ToList());
         }
 
-        // ✅ Get only pending therapists
+        //  Get only pending therapists
         [HttpGet("pending")]
         public ActionResult<IEnumerable<Therapist>> GetPendingTherapists()
         {
@@ -28,7 +28,7 @@ namespace mental_health_assist_platform.Controllers
             return Ok(pendingTherapists);
         }
 
-        // ✅ Approve therapist
+        //  Approve therapist
         [HttpPut("{id}/approve")]
         public IActionResult ApproveTherapist(int id)
         {
@@ -43,7 +43,7 @@ namespace mental_health_assist_platform.Controllers
             return Ok(new { message = "Therapist approved successfully." });
         }
 
-        // ✅ Reject (delete) therapist
+        //  Reject (delete) therapist
         [HttpDelete("{id}")]
         public IActionResult RejectTherapist(int id)
         {

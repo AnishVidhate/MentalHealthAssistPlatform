@@ -14,14 +14,14 @@ namespace mental_health_assist_platform
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<MentalHealthDbContext>(options =>
                 options.UseSqlServer(connectionString));
-
+            
             // Add services to the container.
             builder.Services.AddControllers();
 
-            // ✅ Enable CORS correctly
+            //  Enable CORS correctly
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll",
+                options.AddPolicy("*",
                     policy => policy.AllowAnyOrigin()
                                     .AllowAnyHeader()
                                     .AllowAnyMethod());
@@ -43,8 +43,8 @@ namespace mental_health_assist_platform
 
             // app.UseHttpsRedirection(); // ❌ Disable HTTPS redirection for local testing
 
-            // ✅ Use CORS middleware with the correct policy
-            app.UseCors("AllowAll");
+            //  Use CORS middleware with the correct policy
+            app.UseCors("*");
 
             app.UseAuthorization();
 
