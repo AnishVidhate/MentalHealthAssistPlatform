@@ -17,9 +17,9 @@ public class SessionsController : ControllerBase
     public async Task<ActionResult<IEnumerable<Session>>> GetSessions() => await _context.Sessions.ToListAsync();
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Session>> GetSession(int id)
+    public async Task<ActionResult<List<Session>>> GetSession(int id)
     {
-        var session = await _context.Sessions.FindAsync(id);
+        var session = await _context.Sessions.Where(s=>s.TherapistId==id).ToListAsync();
         if (session == null) return NotFound();
         return session;
     }
@@ -66,7 +66,7 @@ public class SessionsController : ControllerBase
             return NotFound(new { message = "Session not found." });
 
         // Debugging: Log received data
-        Console.WriteLine($"Received Session Data: Id={id}, DateTime={updatedSession.DateTime}, Status={updatedSession.Status}, UserId={updatedSession.UserId}, TherapistId={updatedSession.TherapistId}");
+        //Console.WriteLine($"Received Session Data: Id={id}, DateTime={updatedSession.DateTime}, Status={updatedSession.Status}, UserId={updatedSession.UserId}, TherapistId={updatedSession.TherapistId}");
 
         if (updatedSession.DateTime == default)
             return BadRequest(new { message = "Invalid DateTime format received." });
