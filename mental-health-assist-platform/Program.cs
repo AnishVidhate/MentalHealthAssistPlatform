@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using mental_health_assist_platform.Models;
 using System;
+using mental_health_assist_platform.Services;
+using mental_health_assist_platform.Configuration;
 
 namespace mental_health_assist_platform
 {
@@ -14,7 +16,11 @@ namespace mental_health_assist_platform
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<MentalHealthDbContext>(options =>
                 options.UseSqlServer(connectionString));
-            
+
+            // configure email service from appsetting
+            builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
+            builder.Services.AddScoped<IEmailService, EmailService>();
             // Add services to the container.
             builder.Services.AddControllers();
 
@@ -27,7 +33,7 @@ namespace mental_health_assist_platform
                                     .AllowAnyMethod());
             });
 
-
+            builder.Services.AddScoped<IEmailService, EmailService>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
